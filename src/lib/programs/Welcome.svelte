@@ -36,6 +36,7 @@
                 <ul>
                     <li>Added a basic virtual filesystem. Just supports directories for now</li>
                     <li>Added terminal commands to navigate filesystem. Namely dir, mkdir, rmdir</li>
+                    <li>Added actual info to welcome window</li>
                 </ul>
                 <h3>Links</h3>
                 <p><a href="https://github.com/mellobacon/mello_os">GitHub</a></p>
