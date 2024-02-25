@@ -1,7 +1,8 @@
 import type { Terminal } from "xterm";
-import Program from "../lib/Program.svelte";
 import Magicword from "../lib/programs/Magicword.svelte";
 import Dialog from "../lib/Dialog.svelte";
+import type { CMD } from "./cmd";
+import { createDir, dirExists, readDir, removeDir } from "./filesystem";
 
 export function help(term: Terminal, commands) {
     term.writeln("For more information on a specific command, type help command-name ")
@@ -26,6 +27,53 @@ export function exit(term: Terminal) {
     parentElement?.
     parentElement?.remove();
     term.dispose();
+}
+
+export function cd(term: Terminal, args: string[], cmd: CMD) {
+    if (args.length === 0) {
+        term.writeln(`C:${cmd.current_dir}`);
+    }
+    else {
+        let path = dirExists(cmd.current_dir!, args[0]);
+        if (dirExists(cmd.current_dir!, args[0])) {
+            cmd.current_dir = path;
+            cmd.setPrompt(cmd.current_dir!);
+        }
+    }
+}
+
+export function dir(term: Terminal, args: string[], cmd:CMD) {
+    for (let dir of readDir(cmd.current_dir!, args[0])) {
+        term.writeln(dir);
+    }
+}
+
+export function mkdir(term: Terminal, args: string[], cmd: CMD) {
+    if (args.length === 0) {
+        term.writeln("Error: No path argument found");
+        return;
+    }
+    createDir(cmd.current_dir!, args[0])
+    term.writeln("Directory created")
+}
+
+export function rmdir(term: Terminal, args: string[], cmd: CMD) {
+    if (args.length === 0) {
+        term.writeln("Error: No path argument found");
+        return;
+    }
+    let path = args.shift()!;
+    if (!dirExists(cmd.current_dir!, path)) {
+        term.writeln("Path doesnt exist or is not valid");
+        return;
+    }
+    let flags = validFlags(args, ["/s", "/q"], 2);
+    if (!flags.status) {
+        term.writeln(flags.message);
+    }
+    else {
+        term.writeln(removeDir(cmd.current_dir!, path, args))
+    }
 }
 
 let attempts = 2;
@@ -69,4 +117,16 @@ export async function access(term: Terminal) {
              }, 20000)
         })
     }
+}
+
+function validFlags(flags: string[], valids: string[], count: number) {
+    if (flags.length > count) {
+        return {status: false, message: "Error: Invalid flag count"};
+    }
+    for (let flag of flags) {
+        if (!valids.includes(flag)) {
+            return {status: false, message: `Error: '${flag}' not valid in command`};
+        }
+    }
+    return {status: true, message: ""}
 }
