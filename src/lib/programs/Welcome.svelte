@@ -12,7 +12,7 @@
     }
 </script>
 
-<Program {name} {index} bind:this={ref}>
+<Program {name} {index} resizable={false} height="auto" bind:this={ref}>
     <div class="welcome">
         <h2>Welcome to Mello OS</h2>
         <Container height="180px">

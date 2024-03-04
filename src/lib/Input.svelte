@@ -1,4 +1,5 @@
 <script lang="ts">
+    export let nolabel = false;
     export let label = "Input"
     export let type = "text";
 
@@ -6,7 +7,9 @@
     export let height = "";
 </script>
 
-<label for="input">{label}: </label>
+{#if !nolabel}
+    <label for="input">{label}: </label>
+{/if}
 <input class="input" type={type} style="height: {height}; width: {width}">
 
 <style>
