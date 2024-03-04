@@ -71,6 +71,7 @@
         width: 200px;
         padding: 4px;
         visibility: hidden;
+        z-index: 9999;
     }
     .menu-item {
         position: relative;
