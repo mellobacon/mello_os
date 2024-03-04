@@ -5,6 +5,7 @@
     export let height = "200px";
     export let _class = "";
     export let inset = true;
+    export let background = "#fcfcfc";
 
     let ref: HTMLElement;
 
@@ -17,13 +18,12 @@
     })
 </script>
 
-<div bind:this={ref} class="container {_class}">
+<div bind:this={ref} class="container {_class}" style="background-color: {background};">
     <slot></slot>
 </div>
 
 <style>
     .container {
-        background-color: #fcfcfc;
         padding-top: 1.5px;
         box-sizing: border-box;
     }

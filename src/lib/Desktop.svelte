@@ -6,6 +6,7 @@
     import Program from "./Program.svelte";
     import Wallet from "./programs/Wallet.svelte";
     import Cmd from "./programs/CMD.svelte";
+    import Browser from "./programs/Browser.svelte";
 </script>
 <div id="desktop">
     <div id="icons">
@@ -21,7 +22,8 @@
             <DesktopIcon name="Finder" error icon="https://win98icons.alexmeub.com/icons/png/magnifying_glass_4-1.png" program={Program} />
             <DesktopIcon name="Vacations" error icon="https://win98icons.alexmeub.com/icons/png/kodak_imaging-0.png" program={Program} />
 
-            <DesktopIcon name="Program" error program={Program} />
+            <DesktopIcon name="Program" program={Program} />
+            <DesktopIcon name="Browser" program={Browser} />
         </div>
     </div>
     <Taskbar alignment="bottom" />
