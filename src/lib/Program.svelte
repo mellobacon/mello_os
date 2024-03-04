@@ -5,10 +5,29 @@
 
     export let name = "Window Title";
     export let index = 1;
+    export let height: string | null = null, width: string | null = null;
+    export let resizable = true;
     let ref: HTMLElement;
+    let toolbar: HTMLElement;
+    let content: HTMLElement;
 
     onMount(() => {
         if (!ref) return;
+
+        if (toolbar) {
+            let toolbarheight = toolbar.getBoundingClientRect();
+            content.style.height = `calc(100% - (30px + ${toolbarheight.height}px))`;
+        }
+
+        if (height) {
+            ref.style.height = height;
+        }
+        if (width) {
+            ref.style.width = width;
+        }
+
+        ref.style.resize = resizable ? "both" : "none";
+
         ref.style.zIndex = `${index}`;
 
         ref.style.top = `${(ref.parentElement!.clientHeight - 320) / 2}px`;
@@ -42,7 +61,10 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div class="program" bind:this={ref} on:mousedown={bringToFront} on:resize use:draggable={{ handle: '.header', bounds: '#icons'}}>
     <Header title={name} on:click={closeWindow} />
-    <div class="program-content">
+    <div class="program-toolbar" bind:this={toolbar}>
+        <slot name="toolbar"></slot>
+    </div>
+    <div class="program-content" bind:this={content}>
         <slot></slot>
     </div>
 </div>
@@ -59,10 +81,17 @@
         padding: 6px;
         background-color: #cac6cb;
         position: absolute;
-        resize: both;
         overflow: hidden;
         min-height: 295px;
         min-width: 200px;
+    }
+
+    .program-toolbar {
+        width: 100%;
+        height: auto;
+    }
+    .program-toolbar:empty {
+        display: none;
     }
     .program-content {
         height: calc(100% - 30px);
