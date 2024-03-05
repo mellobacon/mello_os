@@ -42,6 +42,7 @@
                 <ul>
                     <li>Added functional browser. Loads websites from the 1990s via <a href="https://web.archive.org/">the wayback machine</a></li>
                     <li>Fixed desktop container not filling width of screen</li>
+                    <li>Added version number to taskbar</li>
                 </ul>
                 <h3>Links</h3>
                 <p><a href="https://github.com/mellobacon/mello_os">GitHub</a></p>
