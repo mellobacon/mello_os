@@ -3,7 +3,7 @@
 </script>
 
 <div class="header">
-    <div class="title">{title}</div>
+    <div class="title" title={title}>{title}</div>
     <div class="window-buttons">
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <button class="close button" on:click></button>
@@ -23,6 +23,9 @@
     }
     .title {
         font-size: 18px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     .window-buttons {
         display: flex;
