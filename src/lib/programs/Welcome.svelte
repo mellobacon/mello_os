@@ -38,6 +38,11 @@
                     <li>Added terminal commands to navigate filesystem. Namely dir, mkdir, rmdir</li>
                     <li>Added actual info to welcome window</li>
                 </ul>
+                <h4>0.2.1</h4>
+                <ul>
+                    <li>Added functional browser. Loads websites from the 1990s via <a href="https://web.archive.org/">the wayback machine</a></li>
+                    <li>Fixed desktop container not filling width of screen</li>
+                </ul>
                 <h3>Links</h3>
                 <p><a href="https://github.com/mellobacon/mello_os">GitHub</a></p>
             </div>
