@@ -16,12 +16,10 @@
                 ref.style.alignSelf = "flex-start";
                 break;
             case "top":
-                ref.style.width = "100%";
                 ref.style.height = "44px";
                 ref.style.alignSelf = "flex-start";
                 break;
             case "bottom":
-                ref.style.width = "100%";
                 ref.style.height = "44px";
                 ref.style.alignSelf = "flex-end";
                 break;
@@ -32,6 +30,7 @@
 </script>
 <div bind:this={ref} id="taskbar">
     <StartButton />
+    <div class="version">v0.2.1</div>
 </div>
 
 <style>
@@ -41,5 +40,6 @@
         display: flex;
         align-items: center;
         padding: 3px 3px 0 3px;
+        justify-content: space-between;
     }
 </style>
