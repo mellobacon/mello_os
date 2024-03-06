@@ -60,7 +60,7 @@
                 }})
             }
             else {
-                src = json.archived_snapshots.closest.url;
+                src = json.archived_snapshots.closest.url.replace("http", "https");
                 if (!urls.includes(url)) {
                     urls = [...urls, url];
                 }
