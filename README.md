@@ -1,2 +1,10 @@
 # Mello OS
-A fake desktop environment in the style of Windows 95
+
+A fake OS styled as Windows 95 using web dev magic (Svelte, TypeScript and CSS basically)
+
+## Features
+- Working windows
+- Working terminal
+- An easter egg just because
+- Virtual filesystem
+- Working browser
